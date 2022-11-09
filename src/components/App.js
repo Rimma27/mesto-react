@@ -6,11 +6,15 @@ import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 
 
-
 function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+    const [selectedCard, setSelectedCard] = React.useState('');
+
+    const handleCardClick = (card) => {
+        setSelectedCard(card);
+    }
 
     const handleEditAvatarClick = () => {
         setIsEditAvatarPopupOpen(true);
@@ -26,6 +30,7 @@ function App() {
         setIsEditAvatarPopupOpen(false);
         setIsEditProfilePopupOpen(false);
         setIsAddPlacePopupOpen(false);
+        setSelectedCard(false);
     }
 
     return (
@@ -36,6 +41,7 @@ function App() {
                     onEditProfile={handleEditProfileClick}
                     onAddPlace={handleAddPlaceClick}
                     onEditAvatar={handleEditAvatarClick}
+                    onCardClick={handleCardClick}
                 />
                 <Footer />
 
@@ -76,6 +82,9 @@ function App() {
                     </label>
                     <button type="submit" className="popup__button popup__button_type_create" disabled>Сохранить</button>`
                 </PopupWithForm>
+
+                <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
+
 
             </div>
         </body>
