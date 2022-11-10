@@ -1,28 +1,30 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { api } from '../utils/Api';
 import logo from '../images/image.svg';
 import Card from './Card';
 
 function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
 
-    const [userName, setUserName] = React.useState('Жак-Ив Кусто');
-    const [userDescription, setUserDescription] = React.useState('Исследователь океана');
-    const [userAvatar, setUserAvatar] = React.useState(logo);
-    const [cards, setCards] = React.useState([]);
+    const [userName, setUserName] = useState('Жак-Ив Кусто');
+    const [userDescription, setUserDescription] = useState('Исследователь океана');
+    const [userAvatar, setUserAvatar] = useState(logo);
+    const [cards, setCards] = useState([]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         api.getUserInfo(userName, userDescription, userAvatar)
             .then((data) => {
                 setUserName(data.name);
                 setUserDescription(data.about);
                 setUserAvatar(data.avatar);
             })
+            .catch(err => console.log('Ошибка', err));
 
         api.getInitialCards(cards)
             .then((data) => {
                 const cards = data;
                 setCards(cards);
             })
+            .catch(err => console.log('Ошибка', err));
     },[])
 
     return (
