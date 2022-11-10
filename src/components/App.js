@@ -34,7 +34,7 @@ function App() {
     }
 
     return (
-        <body className='body'>
+        <div className='body'>
             <div className='page'>
                 <Header />
                 <Main
@@ -48,12 +48,12 @@ function App() {
                 <PopupWithForm name={'profile'} title={'Редактировать профиль'} isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
                     <label>
                         <input type="text" id="name-item" name="name" className="popup__item popup__item_type_name"
-                            placeholder="Имя" required minlength="2" maxlength="40" />
+                            placeholder="Имя" required minLength="2" maxLength="40" />
                         <span className="popup__item-error name-item-error"></span>
                     </label>
                     <label>
                         <input type="text" id="job-item" name="job" className="popup__item popup__item_type_job"
-                            placeholder="Сфера деятельности" required minlength="2" maxlength="200" />
+                            placeholder="Сфера деятельности" required minLength="2" maxLength="200" />
                         <span className="popup__item-error job-item-error"></span>
                     </label>
                     <button type="submit" className="popup__button popup__button_type_create">Сохранить</button>`
@@ -63,7 +63,7 @@ function App() {
                 <PopupWithForm name={'add'} title={'Новое место'} isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
                     <label>
                         <input type="text" id="title-item" name="name" className="popup__item popup__item_type_title"
-                            placeholder="Название" minlength="2" maxlength="30" required />
+                            placeholder="Название" minLength="2" maxLength="30" required />
                         <span className="popup__item-error title-item-error"></span>
                     </label>
                     <label>
@@ -85,9 +85,8 @@ function App() {
 
                 <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
 
-
             </div>
-        </body>
+        </div>
     )
 }
 

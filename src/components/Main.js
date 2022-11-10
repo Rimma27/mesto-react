@@ -21,10 +21,9 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
         api.getInitialCards(cards)
             .then((data) => {
                 const cards = data;
-                console.log(cards);
                 setCards(cards);
             })
-    })
+    },[])
 
     return (
         <main className="content">
@@ -41,7 +40,8 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
             </section>
             <section className="elements">
 
-                {cards.map((card) =>
+                {cards.map((card) => (
+                    
                     <Card
                         card={card}
                         key={card._id}
@@ -49,7 +49,7 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
                         countLikes={card.likes.length}
                         image={card.link}
                         onCardClick={onCardClick}
-                    />
+                    />)
                 )}
 
             </section>
