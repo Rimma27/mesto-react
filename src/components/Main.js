@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import { api } from '../utils/Api';
 import logo from '../images/image.svg';
 import Card from './Card';
@@ -53,10 +53,8 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
                         onCardClick={onCardClick}
                     />)
                 )}
-
             </section>
         </main>
     )
 };
-
 export default Main;

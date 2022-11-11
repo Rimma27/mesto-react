@@ -5,7 +5,6 @@ import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 
-
 function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
@@ -13,12 +12,10 @@ function App() {
     const [selectedCard, setSelectedCard] = useState({});
     const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
 
-
     const handleCardClick = (card) => {
         setSelectedCard(card);
         setIsImagePopupOpen(true);
     }
-
     const handleEditAvatarClick = () => {
         setIsEditAvatarPopupOpen(true);
     }
@@ -28,7 +25,6 @@ function App() {
     const handleAddPlaceClick = () => {
         setIsAddPlacePopupOpen(true);
     }
-
     const closeAllPopups = () => {
         setIsEditAvatarPopupOpen(false);
         setIsEditProfilePopupOpen(false);
@@ -62,7 +58,6 @@ function App() {
                     </label>`
                 </PopupWithForm>
 
-
                 <PopupWithForm name={'add'} title={'Новое место'} isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} submitTitle={'Создать'}>
                     <label>
                         <input type="text" id="title-item" name="name" className="popup__item popup__item_type_title"
@@ -85,10 +80,8 @@ function App() {
                 </PopupWithForm>
 
                 <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups}/>
-
             </div>
         </div>
     )
 }
-
 export default App;

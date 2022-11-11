@@ -12,5 +12,4 @@ function ImagePopup({card, isOpen, onClose}) {
     </div>
     )
 }
-
 export default ImagePopup;

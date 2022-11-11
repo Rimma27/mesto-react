@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 function PopupWithForm({ name, title, children, isOpen, onClose, submitTitle }) {
     return (
             <div className={`popup popup-${name} ${isOpen ? 'popup-opened' : ''}`}>
@@ -15,5 +14,4 @@ function PopupWithForm({ name, title, children, isOpen, onClose, submitTitle }) 
             </div>
     )
 }
-
 export default PopupWithForm;
