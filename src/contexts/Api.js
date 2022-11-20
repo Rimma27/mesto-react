@@ -31,15 +31,15 @@ class Api {
   }
 
   // редактирование профиля
-  setUserInfo() {
+  setUserInfo(userinfo) {
     return fetch(
       `${this._baseUrl}users/me`,
       {
         method: 'PATCH',
         headers: this._headers,
         body: JSON.stringify({
-          name: 'Eva Longoria',
-          about: 'actress, producer, director'
+          name: userinfo.name,
+          about:  userinfo.about
         })
       })
       .then(this._onResponce)
@@ -102,14 +102,14 @@ class Api {
   }
 
   // обновление аватара
-  updateAvatar(link) {
+  updateAvatar(data) {
     return fetch(
       `${this._baseUrl}users/me/avatar`,
       {
         method: 'PATCH',
         headers: this._headers,
         body: JSON.stringify({
-          avatar: link
+          avatar: data.avatar
         })
       })
       .then(this._onResponce)
