@@ -16,7 +16,6 @@ function App() {
     const [selectedCard, setSelectedCard] = useState({});
     const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
     const [currentUser, setCurrentUser] = useState({});
-
     const [cards, setCards] = useState([]);
     useEffect(() => {
         api.getInitialCards(cards)
@@ -25,26 +24,28 @@ function App() {
                 setCards(cards);
             })
             .catch(err => console.log('Ошибка', err));
-    }, [])
-    function handleCardLike(card) {
-        const isLiked = card.likes.some(i => i._id === currentUser._id);
-        api.setCardLike(card._id, isLiked).then((newCard) => {
-            setCards((cards) => cards.map((c) => c._id === card._id ? newCard : c));
-        });
-    }
-    function handleCardDelete(card) {
-        api.deleteCard(card._id).then(() => {
-            setCards((cards) => cards.filter((c) => c._id !== card._id));
-        });
-    }
-
-    useEffect(() => {
         api.getUserInfo()
             .then((data) => {
                 setCurrentUser(data);
             })
             .catch(err => console.log('Ошибка', err));
     }, [])
+
+    function handleCardLike(card) {
+        const isLiked = card.likes.some(i => i._id === currentUser._id);
+        api.setCardLike(card._id, isLiked)
+            .then((newCard) => {
+                setCards((cards) => cards.map((c) => c._id === card._id ? newCard : c));
+            })
+            .catch(err => console.log('Ошибка при установке лайка', err));
+    }
+    function handleCardDelete(card) {
+        api.deleteCard(card._id)
+            .then(() => {
+                setCards((cards) => cards.filter((c) => c._id !== card._id));
+            })
+            .catch(err => console.log('Ошибка при удалении карточки', err));
+    }
 
     const handleCardClick = (card) => {
         setSelectedCard(card);
@@ -73,7 +74,7 @@ function App() {
                 setCurrentUser(currentUserUpdated);
                 closeAllPopups();
             })
-            .catch(err => console.log('Ошибка', err));
+            .catch(err => console.log('Ошибка редактирования профиля', err));
     }
 
     function handleUpdateAvatar(link) {
@@ -82,16 +83,16 @@ function App() {
                 setCurrentUser(link);
                 closeAllPopups();
             })
-            .catch(err => console.log('Ошибка', err));
+            .catch(err => console.log('Ошибка при обновлении аватара', err));
     }
 
     function handleAddPlace(newCard) {
         api.addCard(newCard)
-        .then((newCard) => {
-            setCards([newCard, ...cards]);
-            closeAllPopups();
-        })
-        .catch(err => console.log('Ошибка', err));
+            .then((newCard) => {
+                setCards([newCard, ...cards]);
+                closeAllPopups();
+            })
+            .catch(err => console.log('Ошибка при добавлении карточки', err));
     }
 
     return (
